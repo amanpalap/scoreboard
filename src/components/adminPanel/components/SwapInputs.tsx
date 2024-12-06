@@ -1,4 +1,5 @@
 'use client'
+import { OffSwitch } from '@/Svgs';
 import React, { useState } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 
@@ -8,17 +9,22 @@ const SwapInputs = () => {
     const [striker, setStriker] = useState('');
     const [nonStriker, setNonStriker] = useState('');
     const [bowler, setBowler] = useState('')
+    const [isSwitch, setIsSwitch] = useState(false)
 
     const swapNames = () => {
         setStriker(nonStriker);
         setNonStriker(striker);
     };
 
+    const handleSwitch = () => {
+        setIsSwitch(!isSwitch)
+    }
+
     return (
-        <div className="grid grid-cols-3 items-center space-x-2 w-full">
+        <div className="grid grid-cols-3 items-center space-x-2 w-full gap-y-3 px-2 py-2" >
             <section className='col-span-2 grid grid-cols-11 items-center justify-between'>
                 <div className='col-span-5'>
-                    <label className='w-full'>Batsman (Striker) </label>
+                    <label className='w-full text-sm font-semibold'>Batsman (Striker) </label>
                     <select
                         name="striker"
                         value={striker}
@@ -37,7 +43,7 @@ const SwapInputs = () => {
                     <IoMdSwap className="text-red-500 w-6 h-6 cursor-pointer col-span-1" onClick={swapNames} />
                 </div>
                 <div className='col-span-5'>
-                    <label className='w-full'>Batsman (Non-Striker) </label>
+                    <label className='w-full text-sm font-semibold'>Batsman (Non-Striker) </label>
                     <select
                         name="nonStriker"
                         value={nonStriker}
@@ -54,7 +60,7 @@ const SwapInputs = () => {
                 </div>
             </section>
             <section className='col-span-1'>
-                <label className='w-full'>Bowler </label>
+                <label className='w-full text-sm font-semibold'>Bowler </label>
                 <select
                     name="bowler"
                     value={bowler}
@@ -68,6 +74,29 @@ const SwapInputs = () => {
                         </option>
                     ))}
                 </select>
+            </section>
+            <section className='col-span-3 grid grid-cols-2 gap-x-4'>
+                <div className='flex flex-wrap items-center justify-start space-y-4 '>
+                    <div className='flex flex-wrap items-center justify-start space-x-3 w-full'>
+                        <h3 className='font-semibold text-sm'>Score:</h3>
+                        <p>score</p>
+                    </div>
+                    <div className='flex flex-wrap items-center justify-start space-x-3 w-full'>
+                        <h3 className='font-semibold text-sm'>Extras:</h3>
+                        <p>score</p>
+                    </div>
+                </div>
+                <div className='flex flex-wrap items-center justify-center '>
+                    <div onClick={handleSwitch} className='cursor-pointer flex flex-wrap items-center justify-center space-y-0 border rounded-lg'>
+                        <section className='flex items-center justify-center'>
+                            {isSwitch
+                                ? <OffSwitch className='w-8 h-8 ' />
+                                : <OffSwitch className='w-8 h-8 scale-[-1]' />
+                            }
+                        </section>
+                        <p className='text-xs font-semibold w-full text-center'>Mute & Text Off</p>
+                    </div>
+                </div>
             </section>
         </div>
     );

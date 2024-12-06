@@ -1,0 +1,1 @@
+export { default as OffSwitch } from './OffSwitch.svg'
