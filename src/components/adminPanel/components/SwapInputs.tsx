@@ -21,7 +21,7 @@ const SwapInputs = () => {
     }
 
     return (
-        <div className="grid grid-cols-3 items-center space-x-2 w-full gap-y-3 px-2 py-2" >
+        <div className="grid grid-cols-3 items-center space-x-2 w-full gap-y-3 px-2" >
             <section className='col-span-2 grid grid-cols-11 items-center justify-between'>
                 <div className='col-span-5'>
                     <label className='w-full text-sm font-semibold'>Batsman (Striker) </label>
