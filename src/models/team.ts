@@ -7,6 +7,7 @@ export interface Team extends Document {
     runs: number;
     wickets: number;
     extras: string[];
+    over: number
 }
 
 const teamSchema: Schema<Team> = new mongoose.Schema({
@@ -33,6 +34,10 @@ const teamSchema: Schema<Team> = new mongoose.Schema({
         type: [String], // Array of strings
         default: [],
     },
+    over: {
+        type: Number,
+        default: 0
+    }
 });
 
 export const TeamModel = mongoose.model<Team>("Team", teamSchema);

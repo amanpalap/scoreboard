@@ -1,9 +1,9 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { Player } from "./player";
+import { Team } from "./team";
 
 export interface Board extends Document {
-    teamA: Player[];
-    teamB: Player[];
+    teamA: Team[];
+    teamB: Team[];
     batsman: string[];
     strike: number;
     commentary: {

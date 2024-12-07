@@ -6,8 +6,7 @@ export interface Player extends Document {
     runsGiven: number[];
     type: string;
     wickets: number;
-    out: boolean;
-    active: string;
+    out: string;
 }
 
 const playerSchema: Schema<Player> = new mongoose.Schema({
@@ -32,14 +31,9 @@ const playerSchema: Schema<Player> = new mongoose.Schema({
         default: 0,
     },
     out: {
-        type: Boolean,
-        default: false,
-    },
-    active: {
         type: String,
-        enum: ["batting", "bowling", "fielding", "0"],
-        default: "0"
-    }
+        enum: ["out", "notOut", "notPlayed"],
+    },
 });
 
 export const PlayerModel = mongoose.model<Player>("Player", playerSchema);
