@@ -1,141 +1,62 @@
 import mongoose, { Schema, Document } from "mongoose";
-
-export interface batsman extends Document {
-    name: string
-    runs: number
-    ballsPlayed: number
-    out: boolean
-    onStrike: boolean
-}
-
-const batsmanSchema: Schema<batsman> = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    runs: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    ballsPlayed: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    out: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    onStrike: {
-        type: Boolean,
-        required: true,
-        default: null
-    }
-})
-
-export interface bowler extends Document {
-    name: string
-    runs: number
-    ballsPlayed: number
-    out: boolean
-    onStrike: boolean
-}
-
-const bowlerSchema: Schema<bowler> = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    runs: {
-        type: Number,
-        required: true,
-        default: 0,
-    },
-    ballsPlayed: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    out: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    onStrike: {
-        type: Boolean,
-        required: true,
-        default: null
-    }
-})
+import { Player } from "./player";
 
 export interface Board extends Document {
-    batsman1: batsman
-    batsman2: batsman
-    Bowler: string
-    password: string
-    //TODO: Address should contain more detail like pincode, landmark, locality etc
-    address: string
-    number: string
-    otp: string
-    otpExpiry: Date
-    isVerified: boolean
-    isAdmin: boolean
-    buckets: bucket[]
+    teamA: Player[];
+    teamB: Player[];
+    batsman: string[];
+    strike: number;
+    commentary: {
+        run: string;
+        over: number;
+        dialogue: string;
+    }[];
+    over: number;
+    winner: string;
 }
 
-const UserSchema: Schema<User> = new mongoose.Schema({
-    firstName: {
-        type: String,
+const BoardSchema: Schema<Board> = new mongoose.Schema({
+    teamA: [
+        {
+            type: mongoose.Schema.Types.ObjectId, // Reference to Player model
+            ref: "Player",
+            required: true,
+        },
+    ],
+    teamB: [
+        {
+            type: mongoose.Schema.Types.ObjectId, // Reference to Player model
+            ref: "Player",
+            required: true,
+        },
+    ],
+    batsman: {
+        type: [String], // Array of strings
         required: true,
-        trim: true
+        default: [],
     },
-    lastName: {
-        type: String,
+    strike: {
+        type: Number,
         required: true,
-        trim: true
+        default: 0,
     },
-    email: {
-        type: String,
+    commentary: [
+        {
+            run: { type: String, required: true },
+            over: { type: Number, required: true },
+            dialogue: { type: String, required: true },
+        },
+    ],
+    over: {
+        type: Number,
         required: true,
-        unique: true,
-        trim: true
+        default: 0,
     },
-    password: {
+    winner: {
         type: String,
-        required: [true, 'Password is required'],
-    },
-    address: {
-        type: String,
-        default: null
-    },
-    number: {
-        type: String,
-        unique: false,
+        required: false, // Optional field
         default: null,
     },
-    otp: {
-        type: String,
-        required: [true, 'OTP Code is required'],
-    },
-    otpExpiry: {
-        type: Date,
-        required: [true, 'OTP Expiry is required'],
-    },
-    isVerified: {
-        type: Boolean,
-        default: false
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    buckets: {
-        type: [bucketSchema],
-    }
-})
+});
 
-const userModel = (mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>('User', UserSchema)
-
-export default userModel
+export const BoardModel = mongoose.model<Board>("Board", BoardSchema);

@@ -3,11 +3,11 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface Player extends Document {
     name: string;
     runsScored: number;
-    runsGiven: number[]; // Correct type
+    runsGiven: number[];
     type: string;
     wickets: number;
-    out: boolean; // Should be boolean
-    active: boolean
+    out: boolean;
+    active: string;
 }
 
 const playerSchema: Schema<Player> = new mongoose.Schema({
@@ -17,7 +17,6 @@ const playerSchema: Schema<Player> = new mongoose.Schema({
     },
     runsScored: {
         type: Number,
-        required: true,
         default: 0,
     },
     runsGiven: {
@@ -37,8 +36,9 @@ const playerSchema: Schema<Player> = new mongoose.Schema({
         default: false,
     },
     active: {
-        type: Boolean,
-        default: true,
+        type: String,
+        enum: ["batting", "bowling", "fielding", "0"],
+        default: "0"
     }
 });
 
