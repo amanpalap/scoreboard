@@ -1,9 +1,15 @@
 'use client'
 import { OffSwitch } from '@/Svgs';
+import { FormData } from '@/types/formTypes';
 import React, { useState } from 'react';
 import { IoMdSwap } from 'react-icons/io';
 
-const SwapInputs = () => {
+interface AdminPanelProps {
+    formData: FormData
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+}
+
+const SwapInputs: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
     const players = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
 
     const [striker, setStriker] = useState('');

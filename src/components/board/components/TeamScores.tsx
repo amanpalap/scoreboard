@@ -1,7 +1,13 @@
 import { Bangladesh, India } from '@/Svgs'
+import { FormData } from '@/types/formTypes'
 import React from 'react'
 
-const TeamScores = () => {
+interface AdminPanelProps {
+    formData: FormData
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+}
+
+const TeamScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
     // const [playing, setPlaying] = useState(f)
     return (
         <div className='grid grid-cols-7 text-sm items-center justify-center rounded-t-md border mb-1'>

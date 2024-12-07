@@ -1,6 +1,12 @@
+import { FormData } from '@/types/formTypes'
 import React from 'react'
 
-const PlayerScores = () => {
+interface AdminPanelProps {
+    formData: FormData
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+}
+
+const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
     return (
         <div className='flex flex-wrap items-center text-sm justify-center mt-2'>
             {/* Batsman section  */}

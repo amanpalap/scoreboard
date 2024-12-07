@@ -1,7 +1,13 @@
+import { FormData } from '@/types/formTypes'
 import React from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 
-const Commentry = () => {
+interface AdminPanelProps {
+    formData: FormData
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+}
+
+const Commentry: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
     return (
         <div className='w-full border-t h-full border-gray-300 py-2 mt-3 text-sm overflow-x-scroll max-h-40'>
             <div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>

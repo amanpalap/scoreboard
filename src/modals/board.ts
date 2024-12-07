@@ -18,7 +18,7 @@ export interface Board extends Document {
 const BoardSchema: Schema<Board> = new mongoose.Schema({
     teamA: [
         {
-            type: mongoose.Schema.Types.ObjectId, // Reference to Player model
+            type: mongoose.Schema.Types.ObjectId,
             ref: "Player",
             required: true,
         },

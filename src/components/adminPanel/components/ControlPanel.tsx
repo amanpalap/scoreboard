@@ -1,6 +1,12 @@
+import { FormData } from '@/types/formTypes';
 import React from 'react';
 
-const ControlPanel = () => {
+interface AdminPanelProps {
+    formData: FormData
+    setFormData: React.Dispatch<React.SetStateAction<FormData>>
+}
+
+const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
     return (
         <div className='flex flex-wrap items-center justify-center space-y-1'>
             {/* Section 1 */}
