@@ -13,159 +13,21 @@ const Commentry: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
             <div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
                 {/* Runs  */}
                 <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
+                    {formData.commentry.run}
                 </section>
                 {/* Over  */}
                 <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
+                    {formData.commentry.ball}
                 </section>
                 {/* Commentry  */}
                 <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
+                    {formData.commentry.dialogue}
                 </section>
                 {/* options  */}
                 <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
                     <BiDotsVerticalRounded className='w-5 h-5' />
                 </section>
             </div>
-            <div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div><div className='w-full grid grid-cols-8 items-center justify-center px-2 gap-x-1 mb-1'>
-                {/* Runs  */}
-                <section className='col-span-1 aspect rounded-full h-11  font-medium flex items-center justify-center bg-green-300 w-full'>
-                    1
-                </section>
-                {/* Over  */}
-                <section className='col-span-1 font-medium flex items-center justify-center w-full'>
-                    19.6
-                </section>
-                {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
-                    Nitish Kumar Reddy to Tanzim Husain Sakib : 1 run.
-                </section>
-                {/* options  */}
-                <section className='col-span-1 cursor-pointer h-full flex items-center justify-center w-full'>
-                    <BiDotsVerticalRounded className='w-5 h-5' />
-                </section>
-            </div>
-
         </div>
     )
 }

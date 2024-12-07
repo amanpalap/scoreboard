@@ -16,12 +16,12 @@ const TeamScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
             </div>
             <section className='flex flex-wrap items-center justify-center w-full col-span-3'>
                 <div className='w-full flex items-center justify-center flex-wrap space-y-1 py-2'>
-                    <h3 className='w-full text-center'>IND</h3>
+                    <h3 className='w-full text-center'>{formData.teamA.name}</h3>
                     <India className='w-8 h-8 rounded-full border' />
                     <div className='flex w-full flex-wrap items-center justify-center  rounded-lg py-1 px-2'>
                         <div className='flex flex-wrap items-center justify-center text-center rounded-lg border px-2'>
-                            <div>297 / 6 <br />
-                                Over 20.0</div>
+                            <div>{formData.teamB.runs}/{formData.teamB.wickets}<br />
+                                Over {formData.teamB.over}</div>
                         </div>
                     </div>
 
@@ -32,12 +32,12 @@ const TeamScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
             </section>
             <section className='flex flex-wrap items-center justify-center w-full col-span-3'>
                 <div className='w-full flex items-center justify-center flex-wrap space-y-1 py-2'>
-                    <h3 className='w-full text-center'>BAN</h3>
+                    <h3 className='w-full text-center'>{formData.teamB.name}</h3>
                     <Bangladesh className='w-8 h-8 rounded-full border' />
                     <div className='flex w-full flex-wrap items-center justify-center  rounded-lg py-1 px-2'>
                         <div className='flex flex-wrap items-center justify-center text-center rounded-lg border px-2'>
-                            <div>164 / 7<br />
-                                Over 20.0</div>
+                            <div>{formData.teamB.runs}/{formData.teamB.wickets}<br />
+                                Over {formData.teamB.over}</div>
                         </div>
                     </div>
 

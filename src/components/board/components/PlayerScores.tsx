@@ -27,30 +27,30 @@ const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 </div>
                 <div className='w-full text-sm grid grid-cols-6 items-center justify-between bg-gray-100 py-1 text-gray-800'>
                     <div className='col-span-3 w-full pl-4'>
-                        Tazim Hazam Sakib*
+                        {formData.striker.name}
                     </div>
                     <div className='col-span-1 w-full'>
-                        8
+                        {formData.striker.runs}
                     </div>
                     <div className='col-span-1 w-full'>
-                        8
+                        {formData.striker.ballsFaced}
                     </div>
                     <div className='col-span-1 w-full'>
-                        1
+                        {formData.striker.fours}
                     </div>
                 </div>
                 <div className='w-full text-sm grid grid-cols-6 items-center justify-between bg-gray-100 py-1'>
                     <div className='col-span-3 w-full pl-4'>
-                        Towhid Hridoy
+                        {formData.nonStriker.name}
                     </div>
                     <div className='col-span-1 w-full'>
-                        63
+                        {formData.nonStriker.runs}
                     </div>
                     <div className='col-span-1 w-full'>
-                        42
+                        {formData.nonStriker.ballsFaced}
                     </div>
                     <div className='col-span-1 w-full'>
-                        5
+                        {formData.nonStriker.fours}
                     </div>
                 </div>
             </section>
@@ -76,36 +76,36 @@ const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 </div>
                 <div className='w-full text-sm grid grid-cols-7 items-center justify-between bg-gray-100 py-1 text-gray-800'>
                     <div className='col-span-3 w-full pl-4'>
-                        Tazim Hazam Sakib*
+                        {formData.bowler.name}
                     </div>
                     <div className='col-span-1 w-full'>
-                        8
+                        {formData.bowler.overs}
                     </div>
                     <div className='col-span-1 w-full'>
-                        8
+                        {formData.bowler.maiden}
                     </div>
                     <div className='col-span-1 w-full'>
-                        1
+                        {formData.bowler.runs}
                     </div>
                     <div className='col-span-1 w-full'>
-                        1
+                        {formData.bowler.wickets}
                     </div>
                 </div>
                 <div className='col-span-6 w-full text-sm grid grid-cols-7 items-center justify-between bg-gray-100 py-1'>
                     <div className='col-span-3 w-full pl-4'>
-                        Towhid Hridoy
+                        {formData.lastBowler.name}
                     </div>
                     <div className='col-span-1 w-full'>
-                        63
+                        {formData.lastBowler.overs}
                     </div>
                     <div className='col-span-1 w-full'>
-                        42
+                        {formData.lastBowler.maiden}
                     </div>
                     <div className='col-span-1 w-full'>
-                        5
+                        {formData.lastBowler.runs}
                     </div>
                     <div className='col-span-1 w-full'>
-                        1
+                        {formData.lastBowler.wickets}
                     </div>
                 </div>
             </section>

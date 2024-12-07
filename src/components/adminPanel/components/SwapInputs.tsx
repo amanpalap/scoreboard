@@ -10,16 +10,16 @@ interface AdminPanelProps {
 }
 
 const SwapInputs: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
-    const players = ['Player 1', 'Player 2', 'Player 3', 'Player 4'];
+    const players = ['Player 1', 'Player 2', 'Player 3', 'Player 4', 'Player 5', 'Player 6', 'Player 7', 'Player 8', 'Player 9', 'Player 10', 'Player 11', 'Player 12'];
 
-    const [striker, setStriker] = useState('');
-    const [nonStriker, setNonStriker] = useState('');
-    const [bowler, setBowler] = useState('')
     const [isSwitch, setIsSwitch] = useState(false)
 
     const swapNames = () => {
-        setStriker(nonStriker);
-        setNonStriker(striker);
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            striker: prevFormData.nonStriker,
+            nonStriker: prevFormData.striker,
+        }));
     };
 
     const handleSwitch = () => {
@@ -33,8 +33,15 @@ const SwapInputs: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                     <label className='w-full text-sm font-semibold'>Batsman (Striker) </label>
                     <select
                         name="striker"
-                        value={striker}
-                        onChange={(e) => setStriker(e.target.value)}
+                        value={formData.striker.name}
+                        onChange={(e) => setFormData((prevState) => ({
+                            ...prevState,
+                            striker: {
+                                ...prevState.striker,
+                                name: e.target.value,
+                            },
+                        }))
+                        }
                         className='cursor-pointer w-full p-2 rounded-lg border'
                     >
                         <option value="">Select Striker</option>
@@ -52,9 +59,15 @@ const SwapInputs: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                     <label className='w-full text-sm font-semibold'>Batsman (Non-Striker) </label>
                     <select
                         name="nonStriker"
-                        value={nonStriker}
-                        onChange={(e) => setNonStriker(e.target.value)}
-                        className='cursor-pointer w-full p-2 rounded-lg border'
+                        value={formData.nonStriker.name}
+                        onChange={(e) => setFormData((prevState) => ({
+                            ...prevState,
+                            nonStriker: {
+                                ...prevState.nonStriker,
+                                name: e.target.value,
+                            },
+                        }))
+                        } className='cursor-pointer w-full p-2 rounded-lg border'
                     >
                         <option value="">Select Non-Striker</option>
                         {players.map((player, index) => (
@@ -69,9 +82,15 @@ const SwapInputs: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 <label className='w-full text-sm font-semibold'>Bowler </label>
                 <select
                     name="bowler"
-                    value={bowler}
-                    onChange={(e) => setBowler(e.target.value)}
-                    className='cursor-pointer w-full p-2 rounded-lg border'
+                    value={formData.bowler.name}
+                    onChange={(e) => setFormData((prevState) => ({
+                        ...prevState,
+                        bowler: {
+                            ...prevState.bowler,
+                            name: e.target.value,
+                        },
+                    }))
+                    } className='cursor-pointer w-full p-2 rounded-lg border'
                 >
                     <option value="">Select bowler</option>
                     {players.map((player, index) => (
