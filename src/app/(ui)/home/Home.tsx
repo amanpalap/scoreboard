@@ -12,10 +12,8 @@ const Home = () => {
             ball: 0,
             dialogue: ''
         },
-        wide: false,
-        noBall: false,
-        run: '',
-        extras: [],
+        last24Balls: [],
+        extras: [0, 0, 0, 0, 0],
         striker: {
             name: '',
             runs: 0,

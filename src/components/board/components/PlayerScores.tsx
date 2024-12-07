@@ -27,7 +27,7 @@ const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 </div>
                 <div className='w-full text-sm grid grid-cols-6 items-center justify-between bg-gray-100 py-1 text-gray-800'>
                     <div className='col-span-3 w-full pl-4'>
-                        {formData.striker.name}
+                        {formData.striker.name}*
                     </div>
                     <div className='col-span-1 w-full'>
                         {formData.striker.runs}
@@ -76,7 +76,7 @@ const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 </div>
                 <div className='w-full text-sm grid grid-cols-7 items-center justify-between bg-gray-100 py-1 text-gray-800'>
                     <div className='col-span-3 w-full pl-4'>
-                        {formData.bowler.name}
+                        {formData.bowler.name}*
                     </div>
                     <div className='col-span-1 w-full'>
                         {formData.bowler.overs}
@@ -130,7 +130,7 @@ const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                         11
                     </span>
                     <div className='flex items-center justify-start overflow-x-scroll'>
-                        (b 0, lb 4, wd 6, nb 1, P 0)
+                        (b {formData.extras[0]}, lb {formData.extras[1]}, wd {formData.extras[2]}, nb {formData.extras[3]}, P {formData.extras[4]})
                     </div>
                 </div>
             </section>

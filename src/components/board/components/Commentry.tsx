@@ -20,7 +20,7 @@ const Commentry: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                     {formData.commentry.ball}
                 </section>
                 {/* Commentry  */}
-                <section className='col-span-5 flex items-center justify-center w-full'>
+                <section className='col-span-5 flex items-center  w-full'>
                     {formData.commentry.dialogue}
                 </section>
                 {/* options  */}

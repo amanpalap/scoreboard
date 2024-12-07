@@ -20,8 +20,8 @@ const TeamScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                     <India className='w-8 h-8 rounded-full border' />
                     <div className='flex w-full flex-wrap items-center justify-center  rounded-lg py-1 px-2'>
                         <div className='flex flex-wrap items-center justify-center text-center rounded-lg border px-2'>
-                            <div>{formData.teamB.runs}/{formData.teamB.wickets}<br />
-                                Over {formData.teamB.over}</div>
+                            <div>{formData.teamA.runs}/{formData.teamA.wickets}<br />
+                                Over {formData.teamA.over}</div>
                         </div>
                     </div>
 

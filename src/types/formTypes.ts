@@ -5,10 +5,8 @@ export interface FormData {
         ball: number
         dialogue: string
     }
-    wide: boolean
-    noBall: boolean
-    run: string
-    extras: string[]
+    last24Balls: number[]
+    extras: [number, number, number, number, number,]
     striker: {
         name: string
         runs: number
