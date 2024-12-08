@@ -4,6 +4,8 @@ export interface Player extends Document {
     name: string;
     runsScored: number;
     runsGiven: number[];
+    ballsFaced: number
+    fours: number
     type: string;
     wickets: number;
     out: string;
@@ -20,6 +22,14 @@ const playerSchema: Schema<Player> = new mongoose.Schema({
     runsGiven: {
         type: [Number],
         default: [],
+    },
+    ballsFaced: {
+        type: Number,
+        default: 0
+    },
+    fours: {
+        type: Number,
+        default: 0
     },
     type: {
         type: String,

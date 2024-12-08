@@ -11,7 +11,8 @@ export interface Board extends Document {
         over: number;
         dialogue: string;
     }[];
-    over: number;
+    extras: [number, number, number, number, number]
+    last24Balls: string[]
     winner: string;
 }
 
@@ -43,9 +44,13 @@ const BoardSchema: Schema<Board> = new mongoose.Schema({
             dialogue: { type: String, required: true },
         },
     ],
-    over: {
-        type: Number,
-        default: 0,
+    extras: {
+        type: [Number],
+        default: [0, 0, 0, 0, 0],
+    },
+    last24Balls: {
+        type: [String],
+        default: [],
     },
     winner: {
         type: String,

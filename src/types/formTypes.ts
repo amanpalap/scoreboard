@@ -6,7 +6,7 @@ export interface FormData {
         dialogue: string
     }[]
     last24Balls: string[]
-    extras: [number, number, number, number, number,]
+    extras: [number, number, number, number, number]
     striker: {
         name: string
         runs: number
