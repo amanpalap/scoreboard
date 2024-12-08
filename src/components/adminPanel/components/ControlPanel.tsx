@@ -216,6 +216,19 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
         }
     };
 
+    const handleWickets = async () => {
+        console.log("handleWicket")
+        setFormData((prevState) => {
+            return {
+                ...prevState,
+                teamA: {
+                    ...prevState.teamA,
+                    wickets: prevState.teamA.wickets + 1
+                }
+            };
+        });
+    };
+
     return (
         <div className='flex flex-wrap items-center justify-center space-y-1'>
             {/* Section 1 */}
@@ -414,7 +427,11 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                     </button>
                     <button
                         className='w-full bg-red-600 rounded-lg h-full hover:bg-red-500 hover:scale-95 transition-all'
-                        onClick={() => handleCommentry("Wicket Confirm")}
+                        onClick={
+                            () => {
+                                handleCommentry("Wicket Confirm"),
+                                    handleWickets()
+                            }}
                     >
                         Wicket Confirm
                     </button>
