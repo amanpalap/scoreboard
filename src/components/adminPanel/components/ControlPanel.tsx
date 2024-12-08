@@ -1,6 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import { FormData } from '@/types/formTypes';
+import axios, { AxiosError } from 'axios';
+import toast from 'react-hot-toast';
 
 interface AdminPanelProps {
     formData: FormData;
@@ -95,9 +97,9 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
             // Increment no-ball count and update extras
             const updatedExtras: [number, number, number, number, number] = [
                 prevState.extras[0],
-                prevState.extras[1] + 1, // Increment no-ball count
+                prevState.extras[1], // Increment no-ball count
                 prevState.extras[2],
-                prevState.extras[3],
+                prevState.extras[3] + 1,
                 prevState.extras[4],
             ];
 
@@ -197,6 +199,22 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
         });
     };
 
+    const saveBoardData = async () => {
+        try {
+            const response = await axios.post('/api/done', formData);
+            const data = response.data
+            console.log(data)
+            if (data.success) {
+                toast.success(data.message)
+            } else {
+                toast.success("Failed to save Data")
+            }
+        } catch (error: any) {
+            console.error('Error saving board data:', error.response?.data || error.message);
+            toast.error('Failed to save data');
+            throw error;
+        }
+    };
 
     return (
         <div className='flex flex-wrap items-center justify-center space-y-1'>
@@ -351,6 +369,7 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                     </button>
                     <button
                         className='w-full bg-green-900 rounded-lg h-20 hover:bg-green-800 hover:scale-95 transition-all'
+                        onClick={saveBoardData}
                     >
                         Done
                     </button>
