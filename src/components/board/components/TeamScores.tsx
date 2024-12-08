@@ -44,7 +44,7 @@ const TeamScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 </div>
             </section>
             <div className='w-full col-span-7 px-2 text-center font-bold bg-gray-300 overflow-hidden py-1'>
-                India won by 133 runs
+                Match in Progress
             </div>
         </div>
     )
