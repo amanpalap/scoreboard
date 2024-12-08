@@ -12,7 +12,6 @@ export interface Player extends Document {
 const playerSchema: Schema<Player> = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
     },
     runsScored: {
         type: Number,
@@ -36,4 +35,5 @@ const playerSchema: Schema<Player> = new mongoose.Schema({
     },
 });
 
-export const PlayerModel = mongoose.model<Player>("Player", playerSchema);
+export const PlayerModel =
+    mongoose.models.Player || mongoose.model<Player>("Player", playerSchema);

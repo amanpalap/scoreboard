@@ -2,10 +2,10 @@ export interface FormData {
     ballStart: boolean
     commentry: {
         run: number
-        ball: number
+        ball?: number
         dialogue: string
-    }
-    last24Balls: number[]
+    }[]
+    last24Balls: string[]
     extras: [number, number, number, number, number,]
     striker: {
         name: string

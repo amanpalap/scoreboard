@@ -7,11 +7,7 @@ import React, { useState } from 'react'
 const Home = () => {
     const [formData, setFormData] = useState<FormData>({
         ballStart: false,
-        commentry: {
-            run: 0,
-            ball: 0,
-            dialogue: ''
-        },
+        commentry: [],
         last24Balls: [],
         extras: [0, 0, 0, 0, 0],
         striker: {

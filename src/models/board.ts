@@ -20,24 +20,20 @@ const BoardSchema: Schema<Board> = new mongoose.Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Player",
-            required: true,
         },
     ],
     teamB: [
         {
-            type: mongoose.Schema.Types.ObjectId, // Reference to Player model
+            type: mongoose.Schema.Types.ObjectId,
             ref: "Player",
-            required: true,
         },
     ],
     batsman: {
-        type: [String], // Array of strings
-        required: true,
+        type: [String],
         default: [],
     },
     strike: {
         type: Number,
-        required: true,
         default: 0,
     },
     commentary: [
@@ -49,14 +45,13 @@ const BoardSchema: Schema<Board> = new mongoose.Schema({
     ],
     over: {
         type: Number,
-        required: true,
         default: 0,
     },
     winner: {
         type: String,
-        required: false, // Optional field
         default: null,
     },
 });
 
-export const BoardModel = mongoose.model<Board>("Board", BoardSchema);
+export const BoardModel =
+    mongoose.models.Board || mongoose.model<Board>("Board", BoardSchema);

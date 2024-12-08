@@ -1,13 +1,13 @@
 import dbConnect from '@/lib/dbConnect';
 import { NextRequest, NextResponse } from 'next/server';
-import { TeamModel } from '@/models/team'; // Import TeamModel
-import { PlayerModel } from '@/models/player'; // Assuming PlayerModel exists for reference validation
+import { TeamModel } from '@/models/team';
+import { PlayerModel } from '@/models/player';
 
 export async function POST(req: NextRequest) {
     await dbConnect();
 
     try {
-        const body = await req.json(); // Parse the request body
+        const body = await req.json();
 
         const { name, players, runs, wickets, extras, over } = body;
 

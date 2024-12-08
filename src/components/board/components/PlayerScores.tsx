@@ -115,10 +115,14 @@ const PlayerScores: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 <div className='col-span-1 w-full pl-4 font-bold'>
                     24 Balls
                 </div>
-                <div className='col-span-3 text-xs w-full flex items-center justify-start overflow-x-scroll'>
-                    <span className='w-4 h-5 border-gray-400 rounded-md border flex items-center justify-center bg-gray-300'>
-                        6
-                    </span>
+                <div className='col-span-3 text-xs w-full flex space-x-1 items-center justify-start overflow-x-scroll'>
+                    {formData.last24Balls.map((item, idx) => (
+                        <span
+                            key={idx}
+                            className='px-1 h-5 border-gray-400 rounded-md border flex items-center justify-center bg-gray-300'>
+                            {item}
+                        </span>
+                    ))}
                 </div>
             </section>
             <section className='w-full grid grid-cols-5 items-center justify-between bg-gray-200 py-1 rounded-md border border-gray-300 ' >

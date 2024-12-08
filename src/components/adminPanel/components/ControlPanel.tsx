@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import { FormData } from '@/types/formTypes';
 
 interface AdminPanelProps {
@@ -7,9 +8,20 @@ interface AdminPanelProps {
 }
 
 const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
+
+    const [over, setOver] = useState(false)
+
+    const updateLast24Balls = (last24Balls: string[], newBall: string): string[] => {
+        if (last24Balls.length >= 24) {
+            last24Balls.shift();
+        }
+        return [...last24Balls, newBall];
+    };
+
     // Helper to update ball count
     const updateBallCount = (currentBall: number, increment: boolean = true) => {
-        if (!increment) return parseFloat((currentBall - 0.1).toFixed(1));
+        if (!increment) return parseFloat((currentBall).toFixed(1));
+
         return currentBall + 0.1 >= Math.floor(currentBall) + 0.6
             ? Math.floor(currentBall) + 1
             : parseFloat((currentBall + 0.1).toFixed(1));
@@ -17,65 +29,94 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
 
     // Handle start of a ball
     const handleBallStart = () => {
-        setFormData((prevState) => ({
-            ...prevState,
-            commentry: {
-                ...prevState.commentry,
-                dialogue: `${prevState.bowler.name} to ${prevState.striker.name}: `,
-            },
-        }));
-    };
-
-    // Handle wide ball
-    const handleWide = () => {
         setFormData((prevState) => {
-            const updatedExtras: [number, number, number, number, number] = [
-                prevState.extras[0],
-                prevState.extras[1],
-                prevState.extras[2] + 1,
-                prevState.extras[3],
-                prevState.extras[4],
-            ];
+            setOver(true)
+            const newCommentry = {
+                run: 0,
+                dialogue: `${prevState.bowler.name} to ${prevState.striker.name}: `,
+            };
 
             return {
                 ...prevState,
-                commentry: {
-                    ...prevState.commentry,
-                    dialogue: `${prevState.commentry.dialogue || ''} wide ball `,
-                    run: prevState.commentry.run + 1,
-                },
-                teamA: {
-                    ...prevState.teamA,
-                    runs: prevState.teamA.runs + 1, // Increment team runs for wide
-                },
-                extras: updatedExtras, // Update wide count in extras
-                bowler: {
-                    ...prevState.bowler,
-                    runs: prevState.bowler.runs + 1
-                },
-                ballStart: false
+                commentry: [...prevState.commentry, newCommentry],
             };
         });
     };
 
-    // Handle no-ball
-    const handleNoBall = () => {
+
+    // Handle wide ball
+    const handleWide = () => {
         setFormData((prevState) => {
+            // Increment the wide count in extras
             const updatedExtras: [number, number, number, number, number] = [
                 prevState.extras[0],
-                prevState.extras[1], // Increment no-ball count
-                prevState.extras[2],
-                prevState.extras[3] + 1,
+                prevState.extras[1],
+                prevState.extras[2] + 1, // Increment wide count
+                prevState.extras[3],
                 prevState.extras[4],
             ];
 
+            const updatedLast24Balls = updateLast24Balls(prevState.last24Balls, 'wd')
+            // Create a new commentry array with the last object modified
+            const updatedCommentry = [...prevState.commentry];
+            if (updatedCommentry.length > 0) {
+                const lastIndex = updatedCommentry.length - 1;
+                updatedCommentry[lastIndex] = {
+                    ...updatedCommentry[lastIndex],
+                    run: updatedCommentry[lastIndex].run + 1, // Increment run count for wide
+                    ball: prevState.teamA.over,
+                    dialogue: `${updatedCommentry[lastIndex].dialogue} wide ball`,
+                };
+            }
+
             return {
                 ...prevState,
-                commentry: {
-                    ...prevState.commentry,
-                    dialogue: `${prevState.commentry.dialogue || ''} no ball `,
-                    run: prevState.commentry.run + 1,
+                commentry: updatedCommentry,
+                teamA: {
+                    ...prevState.teamA,
+                    runs: prevState.teamA.runs + 1, // Increment team runs for wide
                 },
+                extras: updatedExtras, // Update extras for wide
+                bowler: {
+                    ...prevState.bowler,
+                    runs: prevState.bowler.runs + 1, // Add run to bowler's tally
+                },
+                last24Balls: updatedLast24Balls,
+            };
+        });
+    };
+
+
+
+    // Handle no-ball
+    const handleNoBall = () => {
+        setFormData((prevState) => {
+            const updatedOver = updateBallCount(prevState.teamA.over)
+            // Increment no-ball count and update extras
+            const updatedExtras: [number, number, number, number, number] = [
+                prevState.extras[0],
+                prevState.extras[1] + 1, // Increment no-ball count
+                prevState.extras[2],
+                prevState.extras[3],
+                prevState.extras[4],
+            ];
+
+            const updatedLast24Balls = updateLast24Balls(prevState.last24Balls, 'nb')
+            // Modify the last commentary entry
+            const updatedCommentry = [...prevState.commentry];
+            if (updatedCommentry.length > 0) {
+                const lastIndex = updatedCommentry.length - 1;
+                updatedCommentry[lastIndex] = {
+                    ...updatedCommentry[lastIndex],
+                    run: updatedCommentry[lastIndex].run + 1, // Add one run for no-ball
+                    ball: prevState.teamA.over,
+                    dialogue: `${updatedCommentry[lastIndex].dialogue} no ball `,
+                };
+            }
+
+            return {
+                ...prevState,
+                commentry: updatedCommentry,
                 teamA: {
                     ...prevState.teamA,
                     runs: prevState.teamA.runs + 1, // Increment team runs for no-ball
@@ -83,51 +124,79 @@ const ControlPanel: React.FC<AdminPanelProps> = ({ formData, setFormData }) => {
                 extras: updatedExtras,
                 bowler: {
                     ...prevState.bowler,
-                    runs: prevState.bowler.runs + 1
+                    runs: prevState.bowler.runs + 1, // Add run to the bowler's tally
                 },
+                last24Balls: updatedLast24Balls,
             };
         });
     };
 
     const handleRuns = (run: number) => {
         setFormData((prevState) => {
+            // Update the ball count for striker, bowler, and over
+            const updatedLast24Balls = over ? updateLast24Balls(prevState.last24Balls, run.toString()) : prevState.last24Balls
+            const updatedOver = over ? updateBallCount(prevState.teamA.over) : updateBallCount(prevState.teamA.over, false);
+            const updatedBallsFaced = updateBallCount(prevState.striker.ballsFaced);
+            const updatedBowlerOvers = updateBallCount(prevState.bowler.overs);
+
+            // Modify the last commentary entry
+            const updatedCommentry = [...prevState.commentry];
+            if (updatedCommentry.length > 0) {
+                const lastIndex = updatedCommentry.length - 1;
+                updatedCommentry[lastIndex] = {
+                    ...updatedCommentry[lastIndex],
+                    run: updatedCommentry[lastIndex - 1].run + run, // Increment the run count
+                    ball: updatedOver, // Increment ball count for commentary
+                    dialogue: `${updatedCommentry[lastIndex].dialogue} ${run} run`, // Append run info
+                };
+            }
+
             return {
                 ...prevState,
-                commentry: {
-                    ...prevState.commentry,
-                    dialogue: `${prevState.commentry.dialogue} ${run} run`,
-                    run: prevState.commentry.run + run,
-                },
+                commentry: updatedCommentry,
                 teamA: {
                     ...prevState.teamA,
-                    runs: prevState.teamA.runs + run,
-                    over: updateBallCount(prevState.teamA.over)
+                    runs: prevState.teamA.runs + run, // Increment team's runs
+                    over: updatedOver, // Update the over count
                 },
                 striker: {
                     ...prevState.striker,
-                    runs: prevState.striker.runs + run,
-                    ballsFaced: updateBallCount(prevState.striker.ballsFaced)
+                    runs: prevState.striker.runs + run, // Increment striker's runs
+                    ballsFaced: updatedBallsFaced, // Update striker's balls faced
                 },
                 bowler: {
                     ...prevState.bowler,
-                    runs: prevState.bowler.runs + run,
-                    overs: updateBallCount(prevState.bowler.overs)
+                    runs: prevState.bowler.runs + run, // Add runs to bowler's tally
+                    overs: updatedBowlerOvers, // Update bowler's overs
                 },
+                last24Balls: updatedLast24Balls,
             };
-        });
-    }
+        })
+        setOver(false);
+    };
+
 
     const handleCommentry = (dialogue: string) => {
         setFormData((prevState) => {
+            // Check if the commentry array has entries
+            const lastCommentary =
+                prevState.commentry.length > 0
+                    ? prevState.commentry[prevState.commentry.length - 1]
+                    : { run: 0, ball: 0, dialogue: '' };
+
             return {
                 ...prevState,
-                commentry: {
-                    ...prevState.commentry,
-                    dialogue: `${prevState.commentry.dialogue} ${dialogue}`,
-                },
+                commentry: [
+                    ...prevState.commentry.slice(0, -1), // Keep all but the last entry
+                    {
+                        ...lastCommentary,
+                        dialogue: `${lastCommentary.dialogue} ${dialogue}`, // Append the new dialogue
+                    },
+                ],
             };
         });
-    }
+    };
+
 
     return (
         <div className='flex flex-wrap items-center justify-center space-y-1'>
